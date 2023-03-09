@@ -8,15 +8,16 @@ app = Vue.createApp({
   },
   watch: {},
   computed: {
-    determineClass() {
-      if (this.className === 'user1') {
-        return this.className
-      } else if (this.className === 'user2') {
-        return this.className
+    determineClasses() {
+      return {
+        user1: this.className === 'user1',
+        user2: this.className === 'user2',
+        visible: this.isVisible,
+        hidden: !this.isVisible,
       }
     },
     tagDisplay() {
-      if (this.isVisible === true) {
+      if (isVisible === true) {
         return ' visible'
       } else {
         return ' hidden'

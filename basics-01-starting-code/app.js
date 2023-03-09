@@ -2,20 +2,20 @@ const app = Vue.createApp({
   data() {
     return {
       courseGoalA: 'Finish the course and learn Vue!',
-      courseGoalB: '<h2>Master vue and build amazing apps!</h>',
+      courseGoalB: 'Master Vue and build amazing apps!',
       vueLink: 'https://vuejs.org/'
     }
   },
   methods: {
-      outputGoal() {
-          const randomNumber = Math.random();
-          if (randomNumber < 0.5) {
-              return this.courseGoalA
-          }
-          else {
-              return this.courseGoalB
-          }
+    outputGoal() {
+      const randomNumber = Math.random()
+      //You can use 'this' in methods to use data returned from the data function
+      if (randomNumber < 0.5) {
+        return this.courseGoalA
+      } else {
+        return this.courseGoalB
       }
+    }
   }
 })
 
