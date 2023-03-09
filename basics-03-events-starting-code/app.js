@@ -1,3 +1,9 @@
+//Vanilla JS --> document.querySelector('button).addEventListener()
+
+/*function add() {
+  counter = counter + 1
+}*/
+
 const app = Vue.createApp({
   data() {
     return {
@@ -7,20 +13,22 @@ const app = Vue.createApp({
     }
   },
   methods: {
-    increaseCounter(num) {
-      this.counter += num
+    add(num) {
+      //this.counter++
+      this.counter = this.counter + num
     },
-    decreaseCounter(num) {
-      this.counter -= num
+    reduce(num) {
+      //this.counter--
+      this.counter = this.counter - num
     },
     setName(event, lastName) {
       this.name = event.target.value + ' ' + lastName
     },
-    confirmInput() {
-      this.confirmedName = this.name
-    },
     submitForm() {
       alert('Submitted!')
+    },
+    confirmInput() {
+      this.confirmedName = this.name
     },
   },
 })

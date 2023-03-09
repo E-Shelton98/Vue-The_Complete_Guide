@@ -18,17 +18,21 @@
     </header>
     <section id="events">
       <h2>Events in Action</h2>
-      <button @click="increaseCounter(5)">Add 5</button>
-      <button @click.right="decreaseCounter(5)">Remove 5</button>
+      <!--You can specifically call the function or you can simply put in the function name for a v-on directive. ie. v-on:click="add" OR v-on:click="add()"-->
+      <button v-on:click="add(5)">Add 5</button>
+      <!--click.right is an example of an event modifier that allows you to set the click event to only happen when the right mouse key is clicked, as an example of the use of event modifiers built into Vue-->
+      <button v-on:click.right="reduce(5)">Subtract 5</button>
       <p v-once>Starting Counter: {{ counter }}</p>
       <p>Result: {{ counter }}</p>
+      <!--How to access the event argument if passing your own arguments to a function as well.-->
       <input
         type="text"
-        @input="setName($event, 'Shelton')"
-        @keyup.enter="confirmInput()"
+        v-on:input="setName($event, 'Shelton')"
+        v-on:keyup.enter="confirmInput"
       />
       <p>Your Name: {{ confirmedName }}</p>
-      <form @submit.prevent="submitForm">
+      <!--Vue has event modifiers to change behaviors of events and when events occur, the example below is the same as event.preventDefault() but built into the event in question instead of the extra line of code in the events method.-->
+      <form v-on:submit.prevent="submitForm">
         <input type="text" />
         <button>Sign Up</button>
       </form>
