@@ -6,9 +6,8 @@
     <title>Vue Basics</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
-      rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./styles.css" />
     <script src="https://unpkg.com/vue@next" defer></script>
     <script src="app.js" defer></script>
   </head>
@@ -17,16 +16,13 @@
       <h1>Vue Dynamic Styling</h1>
     </header>
     <section id="styling">
+      <!--The below css object bound to style is a Vue specific feature that allows you to dynamically style while using variables in data, such as using a ternary like below, though we don't often use inline styles in modern web development
+      <div class="demo" :style="{borderColor: boxASelected ? 'red' : '#ccc'}" @click="boxSelected('A')"></div>
+      -->
+      <!--You can use a watcher for dynamic styling, or simply bind class to an object where key's evaluate as truthy or not, then you can either pass non-dynamic classes as a separate class modifier on the HTML or by passing an array to the bound class modifier as seen at box C-->
       <div class="demo" :class="boxAClasses" @click="boxSelected('A')"></div>
-      <div
-        :class="['demo', {active: boxBSelected}]"
-        @click="boxSelected('B')"
-      ></div>
-      <div
-        class="demo"
-        :class="{active: boxCSelected}"
-        @click="boxSelected('C')"
-      ></div>
+      <div class="demo" :class="{active: boxBSelected}" @click="boxSelected('B')"></div>
+      <div :class="['demo', {active: boxCSelected}]" @click="boxSelected('C')"></div>
     </section>
   </body>
 </html>
