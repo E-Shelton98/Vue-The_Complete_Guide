@@ -18,12 +18,23 @@
     </header>
     <section id="events">
       <h2>Events in Action</h2>
+      <!--Shorthand for v-on: is '@'-->
       <button @click="add(10)">Add 10</button>
-      <button @click="reduce(5)">Subtract 5</button>
+      <button v-on:click="reduce(5)">Subtract 5</button>
       <p>Result: {{ counter }}</p>
-      <input type="text" v-model="name">
-      <input type="text" v-model="lastName">
-      <button @click="resetInput">Reset Input</button>
+      <!--You can use v-model as a shortcut for v-bind:value and v-on:input, the HTML below performs the same function as the input tag below this comment.
+        shorthand for v-bind: is ':'
+      <input type="text" v-bind:value="name" v-on:input="setName($event, 'Shelton')">
+      <input type="text" :value="name" @input="setName($event, 'Shelton')">
+      This concept is called TWO WAY BINDING because you are listening to the input event, and writing the value back to the input element.
+      -->
+      <input type="text" v-model="name" />
+      <input type="text" v-model="lastName" />
+      <button v-on:click="resetInput">Reset Input</button>
+      <!--The below HTML works, but we want to avoid using a method in our HTML template, described in greater detail in the matching js file
+      <p>Your Name: {{ outputFullName() }}</p>
+      What you actually want to use is a computed property as shown below, but DO NOT use it such as {{ fullName() }} even though it looks like a method. We only POINT at it, NOT CALL it, Vue will call it FOR US.
+      -->
       <p>Your Name: {{ fullName }}</p>
     </section>
   </body>
