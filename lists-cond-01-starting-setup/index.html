@@ -19,21 +19,49 @@
     <section id="user-goals">
       <h2>My course goals</h2>
       <input type="text" v-model="enteredGoalValue" />
-      <button @click="addGoal()">Add Goal</button>
+      <button @click="addGoal">Add Goal</button>
+      <!--
+      v-if is exactly like using an if statement in javascript, the only caveat is whatever is in the "" must be truthy or falsey, you can even run a method using v-if as long as it returns true or false
+      You can use multiple v-if's to conditionally render many elements, or you can use a v-else DIRECTLY following a v-if element. There is also v-else-if.
+      Using v-if eliminates the element from the DOM and is replaced with a comment placeholder
+      -->
+      <!--
+      Another option is to use v-show, which if it is falsey, simply hides the element using CSS by setting Display to none
+      Generally you will want to use v-if, and use v-show if visibility status changes a lot (ie. A button that toggles an element and switches between hidden and visible consistently)
+      -->
       <p v-if="goals.length === 0">
         No goals have been added yet - please start adding some!
       </p>
       <ul v-else>
-        <li v-for="(goal, index) in goals" @click="removeGoal(index)">
-          {{goal}}
-        </li>
+        <!--
+         v-for is exactly like using a for loop in javascript, EXCEPT you should use "in" like iterating through an object. You CAN use "of" but "in" is the common practice
+         -->
+         <!--
+          You can also do more with v-for, such as utilizing the index of the item being iterated as well by using "(x, index) in y"
+         -->
+         <!--
+          You should use a unique key when using v-for for each item, so that Vue can keep track of any data and elements that are children of the rendered item. (An example is a text box in the list item, WITH a key, the text box and it's input will move WITH the parent list item, WITHOUT the key, the parent list item will take the place of the previous parent if you for example remove index 0, therefore losing the data in the text box of the list element with index 1)
+          Generally you will want to use something unique like an ID and not the index value of the element, or in a case like below where it is strictly frontend as long as it is unique you can use the goal's text
+         -->
+        <li v-for="(goal, index) in goals" :key="goal" @click="removeGoal(index)">{{ goal }} - {{ index }}</li>
       </ul>
-      <!-- <ul>
-        <li v-for="num in 10">{{num}}</li>
-      </ul> -->
-      <!-- <ul>
-        <li v-for=" (value, key, index) in {name: 'Erik', age: 22}">{{key}} - {{value}} - {{index}}</li>
-      </ul> -->
+      <!--
+      You can also use a v-for to iterate through an object like in the ul below, accessing both the value and key, and even the index if needed
+      -->
+      <!--
+      <ul>
+        <li v-for="(value, key, index) in {name: 'Erik', age: 31}">{{ key }} - {{ value }}</li>
+      </ul>
+      -->
+      
+      <!--
+      You can also use v-for to loop through a range of numbers such as the example below  
+      -->
+      <!--
+      <ul>
+        <li v-for="num in 10">{{ num }}</li>
+      </ul>
+      -->
     </section>
   </body>
 </html>
